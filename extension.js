@@ -510,6 +510,18 @@ var VitalsMenuButton = GObject.registerClass({
         this._sensors.query((label, value, type, format) => {
             let key = '_' + type.replace('-group', '') + '_' + label.replace(' ', '_').toLowerCase() + '_';
 
+            // global.log("querySensors_key: ",key);
+
+            if ([
+                "_temperature_nct6792_systin_",
+                "_temperature_nct6792_auxtin1_",
+                "_temperature_nct6792_auxtin2_",
+                "_fan_nct6792_fan1_",
+                "_fan_nct6792_fan3_",
+                "_fan_nct6792_fan4_",
+                "_fan_nct6792_fan5_",
+            ].includes(key)) return;
+
             // if a sensor is disabled, gray it out
             if (key in this._sensorMenuItems) {
                 this._sensorMenuItems[key].setSensitive((value!='disabled'));

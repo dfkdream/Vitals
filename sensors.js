@@ -104,10 +104,10 @@ var Sensors = GObject.registerClass({
             let sensor = this._tempVoltFanSensors[label];
 
             new FileModule.File(sensor['path']).read().then(value => {
-                global.log(`queryTempVoltFan: ${label} ${value} ${JSON.stringify(sensor)}`)
+                //global.log(`queryTempVoltFan: ${label} ${value} ${JSON.stringify(sensor)}`)
                 this._returnValue(callback, label, value, sensor['type'], sensor['format']);
             }).catch(err => {
-                global.log(`queryTempVoltFan: ${label} disabled ${JSON.stringify(sensor)}`)
+                //global.log(`queryTempVoltFan: ${label} disabled ${JSON.stringify(sensor)}`)
                 this._returnValue(callback, label, 'disabled', sensor['type'], sensor['format']);
             });
         }
